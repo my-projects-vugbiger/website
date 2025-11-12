@@ -512,7 +512,7 @@
                 if (loadedCookieData) {
                     try {
                         currentAppState = JSON.parse(loadedCookieData);
-                        // Ensure displaySettings exists before trying to assign properties
+                        
                         if (!currentAppState.displaySettings) {
                             currentAppState.displaySettings = {};
                         }
@@ -526,7 +526,7 @@
                 currentAppState.displaySettings.customCardBg = newCustomCardBg;
                 currentAppState.displaySettings.textSize = newTextSize;
                 
-                appState.displaySettings = currentAppState.displaySettings; // Update local appState with new display settings
+                appState.displaySettings = currentAppState.displaySettings; 
 
                 setCookie('appState', JSON.stringify(currentAppState), 365);
                 applyDisplaySettings();
@@ -545,7 +545,7 @@
                             appState.displaySettings.customCardBg = parsedState.displaySettings.customCardBg || '#ffffff';
                             appState.displaySettings.textSize = parsedState.displaySettings.textSize || 'text-custom-base';
                         }
-                        // Merge to preserve any other unknown properties from the cookie (e.g., from other apps)
+                  
                         appState = { ...parsedState, ...appState };
                     } catch (e) {
                         console.error('Error parsing appState cookie on init:', e);
@@ -554,7 +554,7 @@
                 }
                 renderUserName();
                 applyDisplaySettings();
-                renderUpdates(); // Call renderUpdates here to fetch and display commits
+                renderUpdates();
             };
 
             init();
